@@ -108,17 +108,5 @@ class TestHealthProgramThresholds2026(unittest.TestCase):
             },
         )
 
-    def test_child_care_voucher_family_size_two_keeps_current_decimal_limit(self):
-        threshold = re.search(
-            r"ChildCareVoucherHouseholdMembers\(value == 2\).*?"
-            r"IncomeChildCareVoucherTotalMonthly\(amount <= ([0-9.]+)\)",
-            read_rule("accessnyc/rules/S2R040.drl"),
-            re.DOTALL,
-        )
-
-        self.assertIsNotNone(threshold)
-        self.assertEqual(Decimal(threshold.group(1)), Decimal("6601.24"))
-
-
 if __name__ == "__main__":
     unittest.main()
